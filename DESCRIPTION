@@ -1,0 +1,10 @@
+Package: sampling
+Version: 0.1
+Date: 2020-08-30
+Title: Sampling Theory Practical Package (sampling)
+Author: David Borchers <dlb@mcs.st-and.ac.uk>
+Maintainer: David Borchers <dlb@mcs.st-and.ac.uk>
+Description: This library is designed to suppliment the Sampling Theory
+        Module of the Statistics Division of the Shool of Mathematics
+        and Statistics at the University of St Andrews.
+RoxygenNote: 7.1.1
