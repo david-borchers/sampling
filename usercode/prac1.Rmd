@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 answer <- FALSE
 ```
 
-In this practical we are going to use the \texttt{R} package \texttt{survey} to reproduce some of the results we have calculated manually in class and in tutorials, and then to ...
+In this practical we are going to use the \texttt{R} package \texttt{survey} to reproduce some of the results we have calculated manually in class and in tutorials, and then use it to estimate the number and proportion of people who voted for brexit, from a sample of 38 regions in the UK.
 
 # Getting started with the pacakge \texttt{sampling}
 
@@ -58,10 +58,26 @@ ybar
 confint(ybar)
 ```
 
-## Exercise 1
+## Questions
 
 \begin{enumerate}
+
 \item By doing appropriate calculations with the data, decide whether the function \texttt{confint} assumed that the sample mean has a normal distribution or a t-distribution.
+
+\item Estimate the total number of caribou in the survey region, together with a 95\% confidence interval
+
+\item The data frame \texttt{brexitsample} contains a sample of data from 38 out of 380 regions in the UK. You can load it after loading the \texttt{mt4608} package using this command \texttt{data("brexitsample")}. Consult the associated help file (\texttt{?brexitsample}) to see what the data frame contains, and then use these data to estimate the total number of people who voted to leave the EU, together with a 95\% confidence interval.
+
+\item Estimate the sample size required to be able to estimate the total number of people who voted to leave the EU to within 1.5 million people, with 95\% confidence.
+
+\item Estimate the sample size required to be able to estimate the proportion of the regions in the UK that had a majority of votes i9n favour of leaving the EU to within 5\%, with 95\% confidence.
+
+\item Given that the total number of valid votes in the referendum (total of the variable \texttt{Valid\_Votes} over all 380 regions) is 32,741,689, use the \texttt{sampling} package to estimate the total number of people who voted to leave the EU, together with a 95\% confidence interval. (Hint: use function \texttt{svyratio()} and then function \texttt{predict()} on the output from this function.)
+
+\item Calculate the sample size required to be able to estimate the total number of people who voted to leave the EU to within 1.5 million people, with 95\% confidence, using the regression estimator. Explain why this number is so different from that you got when using the sample mean as the estimator of this total.
+
+\end{enumerate}
+
 
 ```{r ex1asoln, eval=FALSE, echo=FALSE}
 s2 = sum((count-ybar)^2)/(n-1)
@@ -74,10 +90,6 @@ ci.t
 ci.z = ybar[1] + c(-1,1)*1.96*sqrt(var.ybar)
 ci.z
 ```
-
-\item Estimate the total number of caribou in the survey region, together with a 95\% confidence interval
-
-\end{enumerate}
 
 
 ```{r ex1bsoln, eval=FALSE, echo=FALSE}
@@ -94,5 +106,48 @@ var.tot
 tcrit = abs(qt(0.025,n-1))
 ci.t = tot[1] + c(-1,1)*tcrit*sqrt(var.tot) 
 round(ci.t)
+```
+
+```{r brextot, eval=FALSE, echo=FALSE}
+library(mt4608)
+data("brexitsample")
+N=380
+n = dim(brexitsample)[1]
+f = n/N
+srs <- svydesign(ids=~1,data=brexitsample,fpc=rep(f,n))
+leavetot <- svytotal(~Leave,srs)
+leavetot/10^6
+round(confint(leavetot))/10^6
+```
+
+```{r brextn, eval=FALSE, echo=FALSE}
+S2 = n*attr(leavetot,"var")/(N^2*(1-f))
+B0 = 1500000
+newn = N/(1 + B0^2/(4*N*S2))
+newn
+```
+
+```{r brexp, eval=FALSE, echo=FALSE}
+# First make the indicator variable
+brexitsample$y = 1*(brexitsample$Leave > brexitsample$Remain)
+srs <- svydesign(ids=~1,data=brexitsample,fpc=rep(f,n))
+leavep <- svymean(~y,srs)
+leavep
+confint(leavep)
+# Calculate S^2 and then sample size required
+S2 = n*attr(leavep,"var")/(N^2*(1-f))
+B0 = 0.05
+newn = N/(1 + B0^2/(4*N*S2))
+newn
+```
+
+```{r brexiTotRatio, eval=FALSE, echo=FALSE}
+yxratio = svyratio(~Leave, ~Valid_Votes, srs)
+predict(yxratio,total=32741689)
+```
+
+```{r brexitnRatio, eval=FALSE, echo=FALSE}
+yxratio = svyratio(~Leave, ~Valid_Votes, srs)
+predict(yxratio,total=32741689)
 ```
 

@@ -1,3 +1,6 @@
+
+# Caribou
+# =========
 count = c(1,50,21,98,2,36,4,29,7,15,86,10,21,5,4)
 n = length(count)
 transect = 1:n
@@ -12,15 +15,13 @@ N[stratum==2] = 186
 caribou = data.frame(transect=transect,length=transect.length,stratum=stratum,count=count, area=area, N=N)
 caribou
 
-saveRDS(caribou,file="./data/caribou.Rds")
 save(caribou,file="./data/caribou.RData")
-
 
 data(caribou)
 N=286
 n = dim(caribou)[1]
 library(survey)
-srs <- svydesign(id=~1,data=caribou,fpc=~rep(n/N,n))
+srs <- svydesign(id=~1,data=caribou,fpc=rep(n/N,n))
 ybar <- svymean(~count,srs)
 ybar
 confint(ybar)
@@ -42,3 +43,16 @@ ci.z
 
 
 
+# Brexit sample
+# ==============
+brexdat = readRDS("/Users/dlb/git/MT4608/datasets/brexdat.Rds")
+head(brexdat)
+N = dim(brexdat)[1]
+n=38
+
+library(sampling)
+set.seed(1234)
+swor <- srswor(n,N)
+brexitsample <- brexdat[swor==1,c(1:3,5:8,11)]
+brexitsample
+save(brexitsample, file="./data/brexitsample.RData")
