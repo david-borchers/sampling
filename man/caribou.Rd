@@ -8,12 +8,12 @@
   sampling separately in each stratum.
   Columns are as follows:
     \itemize{
-      \item{"transect"}{Transect number (1 to 15)}
-      \item{"length"}{Length, in miles, of the transect line}
-      \item{"stratum"}{The survey stratum number}
-      \item{``count''}{The number of caribou counted from the transect line}
-      \item{``area''}{The surface area of the stratum. Note that this number is repeated for every row of data in the stratum.}
-      \item{``N''}{The number of strips in each stratum. Note that this number is repeated for every row of data in the stratum.}
+      \item{"transect":}{ Transect number (1 to 15)}
+      \item{"length":}{ Length, in miles, of the transect line}
+      \item{"stratum":}{ The survey stratum number}
+      \item{``count'':}{ The number of caribou counted from the transect line}
+      \item{``area''":}{ The surface area of the stratum. Note that this number is repeated for every row of data in the stratum.}
+      \item{``N'':}{ The number of strips in each stratum. Note that this number is repeated for every row of data in the stratum.}
       }
     }
 \usage{data(caribou)}
