@@ -1,3 +1,4 @@
+#' @export
 strat.regr.tot.var<-function(dat,by.stratum=FALSE)
 {
   est<-0

@@ -1,3 +1,4 @@
+#' @export
 regr<-function(dat)
 {
   if(is.null(dat$x.value)) stop("Can't use regression estimator without an auxiliary variable") 

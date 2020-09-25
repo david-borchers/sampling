@@ -1,3 +1,4 @@
+#' @export
 ci.est<-function(dat,type="ybar",level=0.95)
 {
   if(!is.sample(dat)) stop("Argument 'dat' must be of class 'sample'")

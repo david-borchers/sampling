@@ -1,3 +1,4 @@
+#' @export
 ratio<-function(dat)
 {
   if(is.null(dat$x.value)) stop("Can't use ratio estimator without an auxiliary variable") 

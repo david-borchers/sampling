@@ -1,7 +1,8 @@
+#' @export
 summary.finite.sample.dbn<-function(dat,type="point.est",plot=FALSE,true.stat=NULL)
 {
   if(!is.finite.sample.dbn(dat)) stop("Argument 'dat' must be of class 'finite.sample.dbn'")
-  valid.type<-c("point.est","var.est","ci.est",)
+  valid.type<-c("point.est","var.est","ci.est")
   if(!is.element(type,valid.type)) {
     cat("\nInvalid value for argument 'type'")
     cat("\nValid types are",valid.type,"\n")

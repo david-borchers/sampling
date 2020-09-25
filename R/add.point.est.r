@@ -1,3 +1,4 @@
+#' @export
 add.point.est<-function(dat,type="ybar",cond=NULL)
 {
   dat$point.est<-point.est(dat,type=type,cond=cond)

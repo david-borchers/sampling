@@ -1,3 +1,4 @@
+#' @export
 strat.diffr.mean<-function(dat,by.stratum=FALSE)
 {
   est<-strat.diffr.tot(dat,by.stratum=by.stratum)

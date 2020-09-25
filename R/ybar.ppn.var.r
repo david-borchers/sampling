@@ -1,3 +1,4 @@
+#' @export
 ybar.ppn.var<-function(dat,cond)
 {
   if(dat$n<2) stop("Can't estimate variance with <2 samples")

@@ -1,3 +1,4 @@
+#' @export
 add.ci.est<-function(dat,level=0.95)
 {
   if(!is.finite.sample.dbn(dat) & !is.sample(dat)) stop("Argument 'dat' must be of class 'sample' or 'finite.sample.dbn'")

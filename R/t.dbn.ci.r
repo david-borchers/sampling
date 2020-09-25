@@ -1,3 +1,4 @@
+#' @export
 t.dbn.ci<-function(point,var,level,df)
 {
   sig<-(1-level)/2

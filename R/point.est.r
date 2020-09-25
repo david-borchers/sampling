@@ -1,3 +1,4 @@
+#' @export
 point.est<-function(dat,type="ybar",cond=NULL,by.stratum=FALSE)
 {
   if(!is.samples.population(dat) & !is.sample(dat)) stop("Argument 'dat' must be of class 'sample' or 'samples.population'.")

@@ -114,7 +114,7 @@ take.sample<-function(dat,y.name,n=0,m=0,type="srs",aux.name=NULL,take.all=FALSE
   
   # stratified sampling:
   if(type=="strat") {
-    if(n==0) stop("You must specify 'n'")
+    if(any(n==0)) stop("You must specify samples 'n', all of size greater than zero")
     if(!is.element("subunit",names(dat)[-which(names(dat)==y.name)])) 
       stop("No stratification variable - you can add one using function define.subunit()")
     if(!is.null(aux.name)) {

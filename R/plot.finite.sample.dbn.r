@@ -1,7 +1,8 @@
-plot.finite.sample.dbn<-function(dat, type="point.est", show.mean=TRUE, freq=TRUE, true.stat=NULL, ...)
+#' @export
+plot.finite.sample.dbn<-function(dat, type="point.est", freq=TRUE, true.stat=NULL, ...)
 {
   if(!is.finite.sample.dbn(dat)) stop("Argument 'dat' must be of class 'finite.sample.dbn'")
-  valid.type<-c("point.est","var.est","ci.est",)
+  valid.type<-c("point.est","var.est","ci.est")
   if(!is.element(type,valid.type)) {
     cat("\nInvalid value for argument 'type'")
     cat("\nValid types are",valid.type,"\n")
@@ -33,14 +34,24 @@ plot.finite.sample.dbn<-function(dat, type="point.est", show.mean=TRUE, freq=TRU
       if(type=="var.est") stop("Run 'add.var.est' to generate this column.")
     }
     stat<-dat[[type]]
-    dbn.hist<-hist(stat,plot=FALSE,freq=freq,...)
-    if(freq) maxy<-max(dbn.hist$counts) else maxy<-max(dbn.hist$density)
-    breaks<-dbn.hist$breaks
-    hist(stat,freq=freq,xlab="Estimator",main="Sampling distribution",...)
-    if(show.mean) {
-      mn<-mean(stat)
-      lines(rep(mn,2),c(0,maxy),col="blue",lty=2)
-      text(rep(mn,2),c((-0.02*maxy), (1.02*maxy)), col="blue", label=c(as.character(format(mn)),"Expecation"))
+    bardat = as.data.frame(table(stat))
+    names(bardat)[1] = "Estimate"
+    bardat$PMF = bardat$Freq/sum(bardat$Freq)
+    if(!freq) {
+      barplot(PMF~Estimate,data=bardat)
+      maxy = max(bardat$PMF)
+    }else {
+      barplot(Freq~Estimate,data=bardat)
+      maxy = max(bardat$Freq)
     }
+#    dbn.hist<-hist(stat,plot=FALSE,freq=freq,...)
+#    if(freq) maxy<-max(dbn.hist$counts) else maxy<-max(dbn.hist$density)
+#    breaks<-dbn.hist$breaks
+#    hist(stat,freq=freq,xlab="Estimator",main="Sampling distribution",...)
+#    if(show.mean) {
+#      mn<-mean(stat)
+#      lines(rep(mn,2),c(0,maxy),col="blue",lty=2)
+#      text(rep(mn,2),c((-0.02*maxy), (1.02*maxy)), col="blue", label=c(as.character(format(mn)),"Expecation"))
+#    }
   } # end if(type!="ci.est")
 }

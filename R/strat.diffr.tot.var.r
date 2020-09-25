@@ -1,3 +1,4 @@
+#' @export
 strat.diffr.tot.var<-function(dat,by.stratum=FALSE)
 {
   est<-0

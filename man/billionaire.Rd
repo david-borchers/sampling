@@ -11,11 +11,11 @@
                    \item{``region''}{Region of the world where billionaire is resident}
       }
     }
-                   \usage{data(billionaire)}
-                   \format{A data frame}
-                   \source{forgotten}
-                   \references{None}
-                   \keyword{datasets}
+\usage{data(billionaire)}
+\format{A data frame}
+\source{forgotten}
+\references{None}
+\keyword{datasets}
                    
                    
                    

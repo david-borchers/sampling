@@ -1,3 +1,4 @@
+#' @export
 ratio.ppn.var<-function(sample,cond,N=NULL)
 {
   pdat<-dat

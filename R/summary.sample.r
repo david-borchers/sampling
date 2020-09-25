@@ -1,3 +1,4 @@
+#' @export
 summary.sample<-function(dat)
 {
   if(!is.sample(dat)) stop("Argument 'dat' must be of class 'sample'")

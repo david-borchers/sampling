@@ -1,3 +1,4 @@
+#' @export
 est.sxy<-function(dat,mdf=1,n=dat$n)
 {
   #  if(!is.subsample(dat)) stop("Argument 'dat' must be of class 'subsample'")

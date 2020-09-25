@@ -1,3 +1,4 @@
+#' @export
 strat.tot<-function(dat,by.stratum=FALSE)
 {
   # now some pretty cryptic code: need to add all combinations of stratum i

@@ -1,3 +1,4 @@
+#' @export
 est.beta<-function(dat,mdf=1,n=dat$n)
 {
   est.sxy(dat,mdf=mdf,n=n)/est.sxx(dat,mdf=mdf,n=n)

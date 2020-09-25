@@ -1,3 +1,4 @@
+#' @export
 strat.regr.mean<-function(dat,by.stratum=FALSE)
 {
   est<-strat.regr.tot(dat,by.stratum=by.stratum)

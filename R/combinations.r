@@ -1,3 +1,4 @@
+#' @export
 combinations <- function(n, k){
   # Compute all n choose k combinations of size k from 1:n
   # Return matrix with k rows and choose(n,k) columns.

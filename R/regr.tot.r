@@ -1,3 +1,4 @@
+#' @export
 regr.tot<-function(dat)
 {
   regr(dat)*dat$N

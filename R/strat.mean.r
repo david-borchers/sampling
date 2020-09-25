@@ -1,3 +1,4 @@
+#' @export
 strat.mean<-function(dat,by.stratum=FALSE)
 {
   est<-strat.tot(dat,by.stratum=by.stratum)

@@ -1,7 +1,7 @@
-Package: sampling
+Package: mt4608
 Version: 0.1
 Date: 2020-08-30
-Title: Sampling Theory Practical Package (sampling)
+Title: Module MT4608 Sampling Theory Practical Package
 Author: David Borchers <dlb@mcs.st-and.ac.uk>
 Maintainer: David Borchers <dlb@mcs.st-and.ac.uk>
 Description: This library is designed to suppliment the Sampling Theory

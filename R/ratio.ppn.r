@@ -1,3 +1,4 @@
+#' @export
 ratio.ppn<-function(dat,cond)
 {
   mu.x<-dat$mu.x

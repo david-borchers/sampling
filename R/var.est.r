@@ -1,3 +1,4 @@
+#' @export
 # return estimate from "sample" object
 var.est<-function(dat,type="ybar",cond=NULL,by.stratum=FALSE)
 {

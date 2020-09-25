@@ -1,3 +1,4 @@
+#' @export
 define.subunit<-function(dat,aux.name,breaks=NULL,type="stratum") 
 {
   if(is.null(aux.name)) stop("You must specify 'aux.name'")

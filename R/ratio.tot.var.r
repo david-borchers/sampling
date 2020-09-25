@@ -1,3 +1,4 @@
+#' @export
 ratio.tot.var<-function(dat)
 {
   rat<-apply(dat$y.value,1,mean)/apply(dat$x.value,1,mean)

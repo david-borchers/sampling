@@ -1,3 +1,4 @@
+#' @export
 strat.ppn.var<-function(dat,cond,by.stratum=FALSE)
 {
   for(i in 1:dat$M) dat[[i]]$y.value<-(eval(parse(text=paste("dat[[i]]$y.value",cond,sep="")))*1)

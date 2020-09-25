@@ -1,3 +1,4 @@
+#' @export
 clust.ratio<-function(dat)
 {
   if(is.null(dat$x.value)) stop("Can't use cluster ratio estimator without auxiliary variables N") 

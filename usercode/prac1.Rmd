@@ -1,0 +1,98 @@
+---
+title: MT4608 Sampling Theory
+author: David Borchers
+subtitle: Computer Practical 1
+date: Septemeber 2020
+output: 
+  pdf_document:
+    number_sections: true
+fontsize: 12pt
+classoption: a4paper
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Specify whether answers are shown 
+#answer <- TRUE
+answer <- FALSE
+```
+
+In this practical we are going to use the \texttt{R} package \texttt{survey} to reproduce some of the results we have calculated manually in class and in tutorials, and then to ...
+
+# Getting started with the pacakge \texttt{sampling}
+
+The \texttt{sampling} package should already be installed in RStudio Cloud, but if you are working on another machine, you need to install it from CRAN. 
+
+We start by loading the \texttt{survey} package and the caribou dataset of Table 2.1 of the notes. The dataset is in the package \texttt{mt4608}, written specifically for this module^[This package is not as robust as packages on CRAN, so please be a bit patient/tolerant - things may go a little wrong in situations that I did not anticipate when writing it.].
+```{r library, message=FALSE, warning=FALSE}
+library(survey) # load survey package
+library(mt4608) # load this module package
+```
+
+The caribou survey data are contained in the package \texttt{mt4608}, and can be accessed as follows:
+```{r cariboudata, eval=FALSE}
+data(caribou) # get the dataset
+caribou # look at it
+help(caribou) # get a description of it
+```
+
+Calculate the total area and total number of strips in the survey region:
+```{r caribouN, eval=FALSE}
+A = unique(caribou$area[caribou$stratum==1]) + 
+  unique(caribou$area[caribou$stratum==2])
+N = unique(caribou$N[caribou$stratum==1]) + 
+  unique(caribou$N[caribou$stratum==2])
+```
+
+Estimate the mean number of animals per survey strip, together with a 95\% confidence interval. To do this with the \texttt{survey} package, you first need to associate a survey design with the survey data, using the command \texttt{svydesign}. Look at the help for  \texttt{svydesign} to understand more about the arguments; here  \texttt{ids=$\sim$1} tells it that there are no clusters (you have to specify \texttt{ids}), and \texttt{fpc} if the ``finite population correction'' factor that we call $f$ in the notes.
+```{r cariboudesign, eval=FALSE}
+n = dim(caribou)[1] # sample size
+srs <- svydesign(ids=~1,data=caribou,fpc=rep(n/N,n))
+```
+
+Now using the survey data and the design, we can estimate the population mean and 95\% confidence interval very easily using the commands \texttt{svymean} and \texttt{confint}. To do this you have to tell \texttt{svymean} which column of the data frame is the $y$-variable (the response). In our case it is the \texttt{count}:
+```{r caribouest, eval=FALSE}
+ybar <- svymean(~count,srs)
+ybar
+confint(ybar)
+```
+
+## Exercise 1
+
+\begin{enumerate}
+\item By doing appropriate calculations with the data, decide whether the function \texttt{confint} assumed that the sample mean has a normal distribution or a t-distribution.
+
+```{r ex1asoln, eval=FALSE, echo=FALSE}
+s2 = sum((count-ybar)^2)/(n-1)
+f = n/N
+var.ybar = (1-f)*s2/n
+var.ybar
+tcrit = abs(qt(0.025,n-1))
+ci.t = ybar[1] + c(-1,1)*tcrit*sqrt(var.ybar)
+ci.t
+ci.z = ybar[1] + c(-1,1)*1.96*sqrt(var.ybar)
+ci.z
+```
+
+\item Estimate the total number of caribou in the survey region, together with a 95\% confidence interval
+
+\end{enumerate}
+
+
+```{r ex1bsoln, eval=FALSE, echo=FALSE}
+# Assuming normality:
+tot <- svytotal(~count,srs)
+tot
+round(confint(tot)) 
+
+# Assuming t-distribution (better)
+s2 = sum((count-ybar)^2)/(n-1)
+f = n/N
+var.tot = N^2*(1-f)*s2/n
+var.tot
+tcrit = abs(qt(0.025,n-1))
+ci.t = tot[1] + c(-1,1)*tcrit*sqrt(var.tot) 
+round(ci.t)
+```
+

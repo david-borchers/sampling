@@ -1,3 +1,4 @@
+#' @export
 finite.sample.size<-function(dat,n=NULL,m=NULL)
 {
   if(is.null(n) & is.null(m)) stop("You must specify either 'n' or 'm'.")

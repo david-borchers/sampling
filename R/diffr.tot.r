@@ -1,3 +1,4 @@
+#' @export
 diffr.tot<-function(dat)
 {
   diffr(dat)*dat$N

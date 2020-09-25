@@ -1,3 +1,4 @@
+#' @export
 strat.ratio.var<-function(dat,by.stratum=FALSE)
 {
   est<-strat.ratio.tot.var(dat,by.stratum=by.stratum)

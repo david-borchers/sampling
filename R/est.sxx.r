@@ -1,3 +1,4 @@
+#' @export
 # S^2 functions:
 est.sxx<-function(dat,mdf=1,n=dat$n)
 {

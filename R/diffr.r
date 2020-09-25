@@ -1,3 +1,4 @@
+#' @export
 diffr<-function(dat)
 {
   if(is.null(dat$x.value)) stop("Can't use difference estimator without an auxiliary variable") 
