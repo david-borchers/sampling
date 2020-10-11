@@ -9,4 +9,8 @@ est.sxy<-function(dat,mdf=1,n=dat$n)
   meanx<-apply(dat$x.value,1,mean)
   meany<-apply(dat$y.value,1,mean)
   (apply(xy,1,sum)-n*meanx*meany)/(n-mdf)
+#  yres = dat$y.value - meany
+#  xres = dat$x.value - meanx
+#  (apply(yres^2,1,sum) - apply(xres*yres,1,sum)/apply(xres^2,1,sum))/(n-mdf)
 }
+
