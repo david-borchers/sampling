@@ -14,7 +14,7 @@ ci.est<-function(dat,type="ybar",level=0.95)
          ratio.mean = t.dbn.ci(strat.ratio.mean(dat),strat.ratio.var(dat),level=level,df=dat$n),
          ratio.tot = t.dbn.ci(strat.ratio.tot(dat),strat.ratio.tot.var(dat),level=level,df=dat$n),
          ratio.ppn = t.dbn.ci(strat.ratio.ppn(dat),strat.ratio.tot.ppn(dat),level=level,df=dat$n),
-         strat.ratio.mean = t.dbn.ci(strat.ratio(dat),strat.ratio.var(dat),level=level,df=dat$n),
+         strat.ratio.mean = t.dbn.ci(strat.ratio.mean(dat),strat.ratio.var(dat),level=level,df=dat$n),
          strat.ratio.tot = t.dbn.ci(strat.ratio.tot(dat),strat.ratio.tot.var(dat),level=level,df=dat$n),
          strat.ratio.ppn = t.dbn.ci(strat.ratio.ppn(dat),strat.ratio.tot.ppn(dat),level=level,df=dat$n),
          regr.mean = t.dbn.ci(strat.regr.mean(dat),strat.regr.var(dat),level=level,df=dat$n),
