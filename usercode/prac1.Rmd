@@ -58,7 +58,7 @@ ybar
 confint(ybar)
 ```
 
-## Questions
+# Questions
 
 \begin{enumerate}
 
@@ -70,9 +70,9 @@ confint(ybar)
 
 \item Estimate the sample size required to be able to estimate the total number of people who voted to leave the EU to within 1.5 million people, with 95\% confidence.
 
-\item Estimate the sample size required to be able to estimate the proportion of the regions in the UK that had a majority of votes i9n favour of leaving the EU to within 5\%, with 95\% confidence.
+\item Estimate the sample size required to be able to estimate the proportion of the regions in the UK that had a majority of votes in favour of leaving the EU to within 5\%, with 95\% confidence.
 
-\item Given that the total number of valid votes in the referendum (total of the variable \texttt{Valid\_Votes} over all 380 regions) is 32,741,689, use the \texttt{sampling} package to estimate the total number of people who voted to leave the EU, together with a 95\% confidence interval. (Hint: use function \texttt{svyratio()} and then function \texttt{predict()} on the output from this function.)
+\item Given that the total number of valid votes in the referendum (total of the variable \texttt{Valid\_Votes} over all 380 regions) is 32,741,689, use the \texttt{sampling} package to estimate the total number of people who voted to leave the EU, together with a 95\% confidence interval, using the ratio estimator. (Hint: use function \texttt{svyratio()} and then function \texttt{predict()} on the output from this function.)
 
 \item Calculate the sample size required to be able to estimate the total number of people who voted to leave the EU to within 1.5 million people, with 95\% confidence, using the regression estimator. Explain why this number is so different from that you got when using the sample mean as the estimator of this total.
 
