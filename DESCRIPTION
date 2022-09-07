@@ -7,4 +7,4 @@ Maintainer: David Borchers <dlb@mcs.st-and.ac.uk>
 Description: This library is designed to suppliment the Sampling Theory
         Module of the Statistics Division of the Shool of Mathematics
         and Statistics at the University of St Andrews.
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
