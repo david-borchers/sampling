@@ -3,4 +3,10 @@ Package illustrating some ideas in Sampling Theory, for use with University of S
 
 This should install it: 
 
-devtools::install_github("david-borchers/sampling",build = TRUE)
+pkgs <- c("devtools")
+options(warn = -1)
+for (i in pkgs){
+    if (!require(i, quietly = TRUE, character.only = TRUE)){
+        install.packages(i)
+    }
+}devtools::install_github("david-borchers/sampling",build = TRUE)
